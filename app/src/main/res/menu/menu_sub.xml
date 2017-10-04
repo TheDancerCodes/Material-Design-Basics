@@ -9,11 +9,4 @@
         android:title="@string/settings"
         app:showAsAction="never" />
 
-    <item
-        android:id="@+id/navigate"
-        android:icon="@drawable/ic_navigate_next_black_24dp"
-        android:orderInCategory="200"
-        android:title="@string/next"
-        app:showAsAction="always" />
-
 </menu>

@@ -13,7 +13,7 @@
     <!--Custom Style for the Toolbar-->
     <style name="CustomToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
         <item name="android:textColorPrimary">#FFFFFF</item>  <!--For text-->
-        <item name="android:textColorSecondary">#00F</item> <!-- For overflow icon-->
+        <item name="android:textColorSecondary">#FFFFFF</item> <!-- For overflow icon-->
 
     </style>
 

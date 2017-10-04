@@ -1,30 +1,31 @@
 package com.thedancercodes.materialdesignbasics;
 
-import android.content.Intent;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
-
-    private Toolbar toolbar;
+public class SubActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_sub);
 
-        toolbar = (Toolbar) findViewById(R.id.app_bar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
+
         setSupportActionBar(toolbar);
+
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-        @Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu){
         // Inflate the menu; This adds items to the AppBar if it is present
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_sub, menu);
         return true;
     }
 
@@ -36,15 +37,14 @@ public class MainActivity extends AppCompatActivity {
         int id = menuItem.getItemId();
 
         // noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            Toast.makeText(this, "Hey you just hit " + menuItem.getTitle(), Toast.LENGTH_SHORT).show();
+        if (id == R.id.action_settings){
             return true;
         }
-
-        if(id == R.id.navigate){
-            startActivity(new Intent(this, SubActivity.class));
+        if (id == android.R.id.home){
+            NavUtils.navigateUpFromSameTask(this);
         }
 
         return super.onOptionsItemSelected(menuItem);
+
     }
 }
