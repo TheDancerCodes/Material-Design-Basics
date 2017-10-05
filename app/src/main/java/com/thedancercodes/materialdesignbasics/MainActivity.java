@@ -21,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
 
+        // Include the application home affordance in the action bar.
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
 //        Creating an object of the NavDrawer Fragment
         NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
