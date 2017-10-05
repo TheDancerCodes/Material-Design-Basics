@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">MaterialDesignBasics</string>
+    <string name="title_activity_main">Main Activity</string>
+    <string name="hello_app">Hello App!!</string>
     <string name="settings">Settings</string>
+    <string name="title_activity_sub">Sub Activity</string>
     <string name="next">next</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
 </resources>

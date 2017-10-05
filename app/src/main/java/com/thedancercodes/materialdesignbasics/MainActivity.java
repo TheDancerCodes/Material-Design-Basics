@@ -1,6 +1,7 @@
 package com.thedancercodes.materialdesignbasics;
 
 import android.content.Intent;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -19,6 +20,13 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
+
+//        Creating an object of the NavDrawer Fragment
+        NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment)
+                getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
+
+//        Use the setUp method to pass the Toolbar and other requirements to the NavDrawer Fragment
+        drawerFragment.setUp((DrawerLayout)findViewById(R.id.drawer_layout), toolbar);
     }
 
         @Override
