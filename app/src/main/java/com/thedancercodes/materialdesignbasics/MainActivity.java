@@ -29,18 +29,18 @@ public class MainActivity extends AppCompatActivity {
                 getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
 
 //        Use the setUp method to pass the Toolbar and other requirements to the NavDrawer Fragment
-        drawerFragment.setUp((DrawerLayout)findViewById(R.id.drawer_layout), toolbar);
+        drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
     }
 
-        @Override
-    public boolean onCreateOptionsMenu(Menu menu){
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; This adds items to the AppBar if it is present
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem menuItem){
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
         // Handle AppBar item clicks here.
         // The AppBar will automatically handle clicks on the Home/Up button, so long as you
         // specify a parent activity in AndroidManifest.xml
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
-        if(id == R.id.navigate){
+        if (id == R.id.navigate) {
             startActivity(new Intent(this, SubActivity.class));
         }
 

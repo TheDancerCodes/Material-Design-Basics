@@ -26,6 +26,7 @@ public class NavigationDrawerFragment extends Fragment {
 
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
+    private View containerView;
 
     // Variable that shows whether the user is aware of the drawers' existence or not.
     private boolean mUserLearnedDrawer;
@@ -47,7 +48,7 @@ public class NavigationDrawerFragment extends Fragment {
                 KEY_USER_LEARNED_DRAWER, "false"));
 
         // Coming back from a rotation
-        if (savedInstanceState != null){
+        if (savedInstanceState != null) {
             mFromSavedInstanceState = true;
         }
     }
@@ -59,7 +60,10 @@ public class NavigationDrawerFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
     }
 
-    public void setUp(DrawerLayout drawerLayout, Toolbar toolbar) {
+    public void setUp(int fragmentId, DrawerLayout drawerLayout, Toolbar toolbar) {
+        // Initialize the View
+        containerView=getActivity().findViewById(fragmentId);
+
         mDrawerLayout = drawerLayout;
 
         mDrawerToggle = new ActionBarDrawerToggle(getActivity(), drawerLayout, toolbar,
@@ -68,16 +72,43 @@ public class NavigationDrawerFragment extends Fragment {
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
+
+                if (!mUserLearnedDrawer) {
+                    mUserLearnedDrawer = true;
+                    saveToPreferences(getActivity(), KEY_USER_LEARNED_DRAWER, mUserLearnedDrawer + "");
+                }
+
+                // invalidateOptionsMenu() makes your Activity draw the Toolbar again.
+                getActivity().invalidateOptionsMenu();
             }
 
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
+
+                getActivity().invalidateOptionsMenu();
+
+
             }
         };
 
+        // If user has never see the drawer & if this is the 1st time the fragment is starting,
+        // Display the Navigation Drawer
+        if (mUserLearnedDrawer && mFromSavedInstanceState) {
+            mDrawerLayout.openDrawer(containerView);
+        }
+
         // Set the DrawerListener
         mDrawerLayout.addDrawerListener(mDrawerToggle);
+
+        // syncState - To ensure the hamburger icon appears on Toolbar.
+        // Syncs the state of the drawer indicator/affordance with the linked DrawerLayout.
+        mDrawerLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                mDrawerToggle.syncState();
+            }
+        });
     }
 
     // Methods to write and read the value of mUserLearnedDrawer to & from SharedPreferences
